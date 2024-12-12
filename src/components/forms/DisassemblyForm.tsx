@@ -61,7 +61,7 @@ export const DisassemblyForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg"
+      className="p-4 md:p-8 rounded-lg shadow-lg"
     >
       <div className="flex items-center justify-center mb-6">
         <SplitSquareVertical className="w-8 h-8 text-blue-600 mr-2" />
@@ -69,57 +69,57 @@ export const DisassemblyForm: React.FC = () => {
           Регистрация разборки электродвигателя
         </h2>
       </div>
+      
+      <div className="grid grid-cols-1 gap-4">
+        <InputField
+          label="ID Электродвигателя"
+          type="text"
+          value={formData.motorId}
+          onChange={(value) => setFormData({ ...formData, motorId: value })}
+          required
+          placeholder="Введите ID электродвигателя"
+        />
 
-      <InputField
-        label="ID Электродвигателя"
-        type="text"
-        value={formData.motorId}
-        onChange={(value) => setFormData({ ...formData, motorId: value })}
-        required
-        placeholder="Введите ID электродвигателя"
-      />
+        <ProductInfo
+          isLoading={isLoading}
+          productData={productData}
+          motorId={formData.motorId}
+        />
 
-      <ProductInfo
-        isLoading={isLoading}
-        productData={productData}
-        motorId={formData.motorId}
-      />
+        <InputField
+          label="ID Сотрудника"
+          type="text"
+          value={formData.employeeId}
+          onChange={(value) => setFormData({ ...formData, employeeId: value })}
+          required
+          placeholder="Введите ID сотрудника"
+        />
 
-      <InputField
-        label="ID Сотрудника"
-        type="text"
-        value={formData.employeeId}
-        onChange={(value) => setFormData({ ...formData, employeeId: value })}
-        required
-        placeholder="Введите ID сотрудника"
-      />
+        <InputField
+          label="Дата разборки"
+          type="date"
+          value={formData.disassemblyDate}
+          onChange={(value) =>
+            setFormData({ ...formData, disassemblyDate: value })
+          }
+          required
+        />
 
-      <InputField
-        label="Дата разборки"
-        type="date"
-        value={formData.disassemblyDate}
-        onChange={(value) =>
-          setFormData({ ...formData, disassemblyDate: value })
-        }
-        required
-      />
-
-      <InputField
-        label="Время разборки"
-        type="time"
-        value={formData.disassemblyTime}
-        onChange={(value) =>
-          setFormData({ ...formData, disassemblyTime: value })
-        }
-        required
-      />
+        <InputField
+          label="Время разборки"
+          type="time"
+          value={formData.disassemblyTime}
+          onChange={(value) =>
+            setFormData({ ...formData, disassemblyTime: value })
+          }
+          required
+        />
+      </div>
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className={`w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors ${
-          isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-        }`}
+        className="w-full mt-4 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
       >
         {isSubmitting ? 'Отправка...' : 'Отправить'}
       </button>

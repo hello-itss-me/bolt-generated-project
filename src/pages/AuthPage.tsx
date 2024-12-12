@@ -48,13 +48,13 @@ const AuthPage: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-96">
-        <h2 className="text-2xl font-bold mb-6 text-center">
+    <div className="flex justify-center items-center h-screen bg-gray-100 px-4">
+      <div className="bg-white p-4 md:p-8 rounded-lg shadow-md w-full max-w-md">
+        <h2 className="text-xl md:text-2xl font-bold mb-6 text-center">
           Login / Sign Up
         </h2>
-        <form onSubmit={handleSignup}>
-          <div className="mb-4">
+        <form onSubmit={handleSignup} className="space-y-4">
+          <div>
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="email"
@@ -71,7 +71,7 @@ const AuthPage: React.FC = () => {
               required
             />
           </div>
-          <div className="mb-6">
+          <div>
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="password"
@@ -88,7 +88,7 @@ const AuthPage: React.FC = () => {
               required
             />
           </div>
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between">
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
               type="submit"
@@ -98,7 +98,7 @@ const AuthPage: React.FC = () => {
             </button>
           </div>
         </form>
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleLogin} className="mt-4">
           <div className="flex items-center justify-between">
             <button
               className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
