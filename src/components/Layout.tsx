@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import {
   Home,
   Settings,
@@ -8,7 +8,11 @@ import {
   RotateCcw,
   Workflow,
   SplitSquareVertical,
+  User,
+  LogOut
 } from 'lucide-react';
+import { supabase } from '../lib/supabase';
+import { toast } from 'react-hot-toast';
 
 const navItems = [
   { to: '/', icon: Home, text: 'Главная страница' },
@@ -21,9 +25,21 @@ const navItems = [
   { to: '/winding', icon: Workflow, text: 'Обмотка электродвигателя' },
   { to: '/turning', icon: RotateCcw, text: 'Токарные работы' },
   { to: '/other', icon: Settings, text: 'Прочие работы' },
+  { to: '/profile', icon: User, text: 'Профиль' },
 ];
 
 export const Layout: React.FC = () => {
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      toast.error('Ошибка при выходе');
+    } else {
+      toast.success('Вы успешно вышли');
+      navigate('/auth');
+    }
+  };
+
   return (
     <div className="flex min-h-screen bg-gray-100">
       <nav className="w-64 bg-white shadow-lg">
@@ -45,6 +61,13 @@ export const Layout: React.FC = () => {
               </li>
             ))}
           </ul>
+          <button
+            onClick={handleLogout}
+            className="mt-4 w-full flex items-center p-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
+          >
+            <LogOut className="w-5 h-5 mr-3 text-gray-500" />
+            <span>Выйти</span>
+          </button>
         </div>
       </nav>
       <main className="flex-1 p-8">
